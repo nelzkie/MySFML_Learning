@@ -45,7 +45,7 @@ void Game::run(){
 void Game::processEvents(){
     sf::Event event;
     while(mWindow.pollEvent(event)){
-        if(event.type == sf::Event::Closed){
+      
        
             switch (event.type) {
                     // if key pressed
@@ -68,7 +68,7 @@ void Game::processEvents(){
                 default:
                     break;
             }
-        }
+        
     }
 }
 
@@ -90,8 +90,6 @@ void Game::update(){
     sf::Vector2f movement(0.f,0.f);
     if(mIsMovingUp){
         movement.y -= 1.f;
-
-        
         
     }
     if(mIsMovinDown){
@@ -103,6 +101,9 @@ void Game::update(){
     if(mIsMovingRight){
         movement.x += 1.f;
     }
+    sf::err();
+
+    
     
     mPlayer.move(movement);
 }
