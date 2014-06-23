@@ -90,6 +90,8 @@ void Game::update(){
     sf::Vector2f movement(0.f,0.f);
     if(mIsMovingUp){
         movement.y -= 1.f;
+
+        
         
     }
     if(mIsMovinDown){
@@ -101,6 +103,8 @@ void Game::update(){
     if(mIsMovingRight){
         movement.x += 1.f;
     }
+    
+    mPlayer.move(movement);
 }
 
 void Game::render(){
