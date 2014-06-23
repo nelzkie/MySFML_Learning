@@ -18,7 +18,7 @@ public:
     
 private:
     void processEvents();
-    void update();
+    void update(sf::Time);
     void render();
     sf::RenderWindow mWindow;
     sf::CircleShape mPlayer;
@@ -34,9 +34,14 @@ Game::Game() : mWindow(sf::VideoMode(640,480),"SFML Applicaton"),mPlayer(){
     
 }
 void Game::run(){
+    sf::Clock clock;
     while (mWindow.isOpen()) {
+        
+        // this lets the clock return the elapsed time since its start and restars the clock from zero
+        sf::Time deltaTime = clock.restart();
+        
         processEvents();
-        update();
+        update(deltaTime);
         render();
         
     }
@@ -86,7 +91,7 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed){
     }
 }
 
-void Game::update(){
+void Game::update(sf::Time deltaTime){
     sf::Vector2f movement(0.f,0.f);
     if(mIsMovingUp){
         movement.y -= 1.f;
@@ -105,7 +110,7 @@ void Game::update(){
 
     
     
-    mPlayer.move(movement);
+    mPlayer.move(movement * deltaTime.asSeconds());
 }
 
 void Game::render(){
