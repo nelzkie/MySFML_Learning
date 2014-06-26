@@ -5,6 +5,8 @@
 
 // Here is a small helper for you ! Have a look.
 #include "ResourcePath.hpp"
+#include <iostream>
+
 
 class Game{
 public:
@@ -108,7 +110,7 @@ void Game::update(sf::Time deltaTime){
     }
     sf::err();
 
-    
+    std::cout<<"haha"<<std::endl;
     
     mPlayer.move(movement * deltaTime.asSeconds());
 }
