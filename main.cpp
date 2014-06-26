@@ -8,6 +8,17 @@
 #include <iostream>
 
 
+namespace Textures {
+    enum ID{Landscape,Airplane,Missile};
+    
+}
+
+
+class TextureHolder{
+private:
+    std::map<Textures::ID,std::unique_ptr<sf::Texture>> mTextureMap;
+};
+
 class Game{
 public:
     Game();
@@ -23,16 +34,22 @@ private:
     void update(sf::Time);
     void render();
     sf::RenderWindow mWindow;
-    sf::CircleShape mPlayer;
+    sf::Sprite mPlayer;
+    sf::Texture mTexture;
     
     
 };
 
+
 Game::Game() : mWindow(sf::VideoMode(640,480),"SFML Applicaton"),mPlayer(){
 
-    mPlayer.setRadius(40.f);
-    mPlayer.setPosition(100.0f, 100.0f);
-    mPlayer.setFillColor(sf::Color::Cyan);
+    if(!mTexture.loadFromFile(resourcePath() + "cute_image.jpg")){
+            std::cout<<"haha"<<std::endl;
+    }
+    mPlayer.setTexture(mTexture);
+    mPlayer.setPosition(100.f, 100.f);
+    
+    std::cout<<sf::Texture::getMaximumSize() << std::endl;
     
 }
 void Game::run(){
@@ -110,7 +127,7 @@ void Game::update(sf::Time deltaTime){
     }
     sf::err();
 
-    std::cout<<"haha"<<std::endl;
+
     
     mPlayer.move(movement * deltaTime.asSeconds());
 }
