@@ -9,7 +9,7 @@
 #include "Game.h"
 Game::Game() : mWindow(sf::VideoMode(640,480),"SFML Applicaton"),mPlayer(){
     
-    if(!mTexture.loadFromFile( "cute_image.jpg")){
+    if(!mTexture.loadFromFile( resourcePath() + "cute_image.jpg")){
         std::cout<<"haha"<<std::endl;
     }
     mPlayer.setTexture(mTexture);
