@@ -7,7 +7,10 @@
 //
 
 #include "Game.h"
+#include "TextureHolder.h"
 Game::Game() : mWindow(sf::VideoMode(640,480),"SFML Applicaton"),mPlayer(){
+    TextureHolder textures;
+    textures.load(Textures::Airplane, resourcePath() + "icon.png");
     
     if(!mTexture.loadFromFile( resourcePath() + "cute_image.jpg")){
         std::cout<<"haha"<<std::endl;
